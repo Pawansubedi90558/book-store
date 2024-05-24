@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../../assets/website/logo.png'
-import { FaCaretDown } from "react-icons/fa6";
+import { FaCaretDown, FaCartShopping } from "react-icons/fa6";
 
 const Menu = [{
   id : 1,
@@ -41,8 +41,8 @@ function NavBar() {
             Books
           </a>
         </div>
-        <div>
-          <ul className='hidden sm:flex items-center gap-4'>
+        <div className='flex  items-center justify-between gap-4'>
+          <ul className='hidden sm:flex items-center gap-4 font-semibold'>
             {Menu.map((menu)=>(
               <li>
                 <a href={menu.link}
@@ -55,18 +55,33 @@ function NavBar() {
               <a href="/#"
                  className='flex h-[72px] items-center gap[2px]'>
                 Quick Links
-                  <FaCaretDown 
+                <span>
+                <FaCaretDown 
                    className='transition duration-300 group-hover:rotate-180'
-                  />
-                  </a>
-            </li>
+                />
+                </span>
+                  
+                </a>
             {/*dropdown Link Section*/}
-              <div>
-                <li>
-
-                </li>
+              <div className='absolute -left-9 z-[10] hidden group-hover:block text-black bg-white p-2 shadow-md w-[150px]'>
+                <ul>
+                  {
+                    DropdownLinks.map((link)=>(
+                      <li key={link.id}>
+                        <a href={link.link}
+                           className='inline-block w-full rounded-md p-2 hover:bg-primary/20'
+                        >{link.name}</a>
+                      </li>
+                    ))
+                  }
+                </ul>
               </div>
+              </li>
           </ul>
+          <button className='flex bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 rounded-full items-center gap-3 hover:scale-105 duration-300'>
+            Order
+            <FaCartShopping className='text-xl text-white drop-shadow-sm cursor-pointer'/>
+          </button>
         </div>
       </div>
     </div>
